@@ -1,6 +1,6 @@
-# Avalia Performance - Sistema de Avaliacao de Desempenho Itau
+# Avalia Performance
 
-Sistema backend de avaliacao de desempenho de colaboradores desenvolvido com FastAPI e PostgreSQL.
+Sistema backend de avaliacao de desempenho de colaboradores desenvolvido com FastAPI, SLQAlchemy e RDS (PostgreSQL).
 
 ---
 
