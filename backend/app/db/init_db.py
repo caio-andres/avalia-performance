@@ -16,37 +16,32 @@ def init_db():
     """
     print("🔄 Dropando todas as tabelas existentes...")
 
-    # Dropar schema public com CASCADE para remover todas as dependências
     try:
         with engine.connect() as conn:
             conn.execute(text("DROP SCHEMA public CASCADE"))
             conn.execute(text("CREATE SCHEMA public"))
-            # Não precisa do GRANT para postgres, só para o usuário atual
             conn.execute(text("GRANT ALL ON SCHEMA public TO usuario"))
             conn.execute(text("GRANT ALL ON SCHEMA public TO public"))
             conn.commit()
-        print("✅ Tabelas antigas removidas!")
+        print("tabelas antigas removidas!")
     except Exception as e:
-        print(f"⚠️  Aviso ao dropar schema: {e}")
+        print(f"aviso ao dropar schema: {e}")
 
-    print("🔄 Criando tabelas no banco de dados...")
+    print("criando tabelas no banco de dados...")
 
-    # Criar todas as tabelas
     Base.metadata.create_all(bind=engine)
 
-    print("✅ Tabelas criadas com sucesso!")
+    print("tabelas criadas!")
 
-    # Criar sessão
     db = SessionLocal()
 
     try:
-        # Verificar se já existe usuário admin
+        # verificar se já existe usuário admin
         admin = db.query(Colaborador).filter(Colaborador.matricula == "admin").first()
 
         if not admin:
-            print("🔄 Criando usuário administrador...")
+            print("criando usuario administrador...")
 
-            # Criar usuário admin
             admin = Colaborador(
                 matricula="admin",
                 nome="Administrador",
@@ -61,14 +56,13 @@ def init_db():
             db.commit()
             db.refresh(admin)
 
-            print("✅ Usuário admin criado!")
-            print("   Matrícula: admin")
-            print("   Senha: admin123")
+            print("usuario admin criado!")
+            print("Matricula: admin")
+            print("Senha: admin123")
         else:
-            print("ℹ️  Usuário admin já existe")
+            print("usuario admin ja existe")
 
-        # Criar colaboradores de exemplo
-        print("🔄 Criando colaboradores de exemplo...")
+        print("criando colaboradores de exemplo...")
 
         colaboradores_exemplo = [
             {
@@ -121,10 +115,9 @@ def init_db():
                 db.add(colaborador)
 
         db.commit()
-        print("✅ Colaboradores de exemplo criados!")
+        print("colaboradores de exemplo criados!")
 
-        # Criar ciclo de exemplo
-        print("🔄 Criando ciclo de avaliação de exemplo...")
+        print("criando ciclo de avaliacao de exemplo...")
 
         ciclo_atual = db.query(Ciclo).filter(Ciclo.ano == 2025).first()
 
@@ -141,26 +134,26 @@ def init_db():
             db.commit()
             db.refresh(ciclo)
 
-            print("✅ Ciclo 2025 criado!")
+            print("ciclo 2025 criado!")
         else:
-            print("ℹ️  Ciclo 2025 já existe")
+            print("ciclo 2025 ja existe")
 
         print("\n" + "=" * 50)
-        print("✅ Banco de dados inicializado com sucesso!")
+        print("banco de dados inicializado com sucesso!")
         print("=" * 50)
-        print("\n📋 Credenciais de acesso:")
+        print("\ncredenciais de acesso:")
         print("   Matrícula: admin")
         print("   Senha: admin123")
-        print("\n📋 Colaboradores de exemplo:")
-        print("   Matrícula: 12345 | Senha: senha123")
-        print("   Matrícula: 67890 | Senha: senha123")
-        print("   Matrícula: 11111 | Senha: senha123")
-        print("\n🚀 Inicie o servidor com: uvicorn app.main:app --reload")
-        print("📖 Documentação: http://127.0.0.1:8000/docs")
+        print("\ncolaboradores de exemplo:")
+        print("Matrícula: 12345 | Senha: senha123")
+        print("Matrícula: 67890 | Senha: senha123")
+        print("Matrícula: 11111 | Senha: senha123")
+        print("\ninicie o servidor com: uvicorn app.main:app --reload")
+        print("documentação: http://127.0.0.1:8000/docs")
         print("=" * 50 + "\n")
 
     except Exception as e:
-        print(f"❌ Erro ao inicializar banco de dados: {e}")
+        print(f"erro ao iniciar banco de dados: {e}")
         db.rollback()
         raise
     finally:

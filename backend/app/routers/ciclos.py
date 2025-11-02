@@ -90,7 +90,6 @@ def create_ciclo(
     """
     log_info("Criando novo ciclo", ano=ciclo.ano, criado_por=current_user.matricula)
 
-    # Verificar se já existe ciclo para o ano
     existing = db.query(Ciclo).filter(Ciclo.ano == ciclo.ano).first()
 
     if existing:
@@ -100,7 +99,6 @@ def create_ciclo(
             detail=f"Já existe um ciclo para o ano {ciclo.ano}",
         )
 
-    # Criar ciclo
     db_ciclo = Ciclo(
         ano=ciclo.ano,
         descricao=ciclo.descricao,
@@ -140,7 +138,6 @@ def update_ciclo(
             status_code=status.HTTP_404_NOT_FOUND, detail="Ciclo não encontrado"
         )
 
-    # Atualizar campos
     update_data = ciclo_update.dict(exclude_unset=True)
 
     for field, value in update_data.items():

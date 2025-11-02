@@ -109,7 +109,6 @@ def create_meta(
         criado_por=current_user.matricula,
     )
 
-    # Verificar se o ciclo existe
     ciclo = db.query(Ciclo).filter(Ciclo.id == meta.ciclo_id).first()
     if not ciclo:
         log_warning(
@@ -119,7 +118,6 @@ def create_meta(
             status_code=status.HTTP_404_NOT_FOUND, detail="Ciclo não encontrado"
         )
 
-    # Verificar se o colaborador existe
     colaborador = (
         db.query(Colaborador)
         .filter(Colaborador.matricula == meta.colaborador_matricula)
@@ -134,7 +132,6 @@ def create_meta(
             status_code=status.HTTP_404_NOT_FOUND, detail="Colaborador não encontrado"
         )
 
-    # Criar meta
     db_meta = Meta(**meta.dict())
 
     db.add(db_meta)
@@ -171,7 +168,6 @@ def update_meta(
             status_code=status.HTTP_404_NOT_FOUND, detail="Meta não encontrada"
         )
 
-    # Atualizar campos
     update_data = meta_update.dict(exclude_unset=True)
 
     for field, value in update_data.items():

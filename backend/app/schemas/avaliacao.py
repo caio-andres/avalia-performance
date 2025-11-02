@@ -22,7 +22,7 @@ class TipoAvaliacao(str, Enum):
     AVALIACAO_PAR = "avaliacao_par"
 
 
-# Ciclo Schemas
+# ciclo Schemas
 class CicloBase(BaseModel):
     ano: int = Field(..., ge=2020, le=2100)
     descricao: Optional[str] = None
@@ -51,14 +51,14 @@ class CicloResponse(CicloBase):
         from_attributes = True
 
 
-# Avaliação Comportamental Schemas
+# avaliacao comportamental schemas
 class AvaliacaoComportamentalBase(BaseModel):
     ciclo_id: int
     avaliado_matricula: str
     avaliador_matricula: str
     tipo_avaliacao: TipoAvaliacao
 
-    # Competências (1-5)
+    # competencias (1-5)
     lideranca: int = Field(..., ge=1, le=5)
     comunicacao: int = Field(..., ge=1, le=5)
     trabalho_equipe: int = Field(..., ge=1, le=5)
@@ -88,12 +88,12 @@ class AvaliacaoComportamentalResponse(AvaliacaoComportamentalBase):
     status: StatusAvaliacao
     criado_em: datetime
     atualizado_em: datetime
-    
+
     class Config:
         from_attributes = True
 
 
-# Meta Schemas
+# meta Schemas
 class MetaBase(BaseModel):
     ciclo_id: int
     colaborador_matricula: str

@@ -171,7 +171,6 @@ def create_avaliacao(
         criado_por=current_user.matricula,
     )
 
-    # Verificar se o ciclo existe
     ciclo = db.query(Ciclo).filter(Ciclo.id == avaliacao.ciclo_id).first()
     if not ciclo:
         log_warning(
@@ -182,7 +181,6 @@ def create_avaliacao(
             status_code=status.HTTP_404_NOT_FOUND, detail="Ciclo não encontrado"
         )
 
-    # Verificar se o avaliado existe
     avaliado = (
         db.query(Colaborador)
         .filter(Colaborador.matricula == avaliacao.avaliado_matricula)
@@ -198,7 +196,6 @@ def create_avaliacao(
             detail="Colaborador avaliado não encontrado",
         )
 
-    # Verificar se o avaliador existe
     avaliador = (
         db.query(Colaborador)
         .filter(Colaborador.matricula == avaliacao.avaliador_matricula)
@@ -214,7 +211,6 @@ def create_avaliacao(
             detail="Colaborador avaliador não encontrado",
         )
 
-    # Criar avaliação
     db_avaliacao = AvaliacaoComportamental(**avaliacao.dict())
 
     db.add(db_avaliacao)
@@ -261,7 +257,6 @@ def update_avaliacao(
             status_code=status.HTTP_404_NOT_FOUND, detail="Avaliação não encontrada"
         )
 
-    # Atualizar campos
     update_data = avaliacao_update.dict(exclude_unset=True)
 
     for field, value in update_data.items():

@@ -38,7 +38,6 @@ class Colaborador(Base):
     )
 
     # Relacionamentos
-    # Relacionamento auto-referencial para gestor/subordinados
     subordinados = relationship(
         "Colaborador",
         backref="gestor",

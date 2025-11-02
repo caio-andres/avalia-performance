@@ -3,25 +3,20 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-# Criar diretório de logs se não existir
 log_dir = Path("logs")
 log_dir.mkdir(exist_ok=True)
 
-# Configurar formato do log
 LOG_FORMAT = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
-# Configurar logger principal
 logger = logging.getLogger("itau_performance")
 logger.setLevel(logging.INFO)
 
-# Handler para console (stdout)
 console_handler = logging.StreamHandler(sys.stdout)
 console_handler.setLevel(logging.INFO)
 console_formatter = logging.Formatter(LOG_FORMAT, DATE_FORMAT)
 console_handler.setFormatter(console_formatter)
 
-# Handler para arquivo
 file_handler = logging.FileHandler(
     f"logs/app_{datetime.now().strftime('%Y%m%d')}.log", encoding="utf-8"
 )
@@ -29,7 +24,6 @@ file_handler.setLevel(logging.INFO)
 file_formatter = logging.Formatter(LOG_FORMAT, DATE_FORMAT)
 file_handler.setFormatter(file_formatter)
 
-# Adicionar handlers
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
@@ -47,7 +41,6 @@ def get_logger(name: str = "itau_performance"):
     return logging.getLogger(name)
 
 
-# Funções auxiliares para logs específicos
 def log_info(message: str, **kwargs):
     """Log de informação"""
     extra_info = " | ".join([f"{k}={v}" for k, v in kwargs.items()])

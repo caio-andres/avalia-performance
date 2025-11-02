@@ -105,7 +105,6 @@ def create_colaborador(
         criado_por=current_user.matricula,
     )
 
-    # Verificar se matrícula já existe
     existing = (
         db.query(Colaborador)
         .filter(Colaborador.matricula == colaborador.matricula)
@@ -121,7 +120,6 @@ def create_colaborador(
             status_code=status.HTTP_400_BAD_REQUEST, detail="Matrícula já cadastrada"
         )
 
-    # Verificar se email já existe
     existing_email = (
         db.query(Colaborador).filter(Colaborador.email == colaborador.email).first()
     )
@@ -188,10 +186,9 @@ def update_colaborador(
             status_code=status.HTTP_404_NOT_FOUND, detail="Colaborador não encontrado"
         )
 
-    # Atualizar campos
     update_data = colaborador_update.dict(exclude_unset=True)
 
-    # Se a senha foi fornecida, fazer hash
+    # se a senha foi fornecida, faz hash
     if "senha" in update_data and update_data["senha"]:
         update_data["senha_hash"] = get_password_hash(update_data.pop("senha"))
 
@@ -246,11 +243,11 @@ def delete_colaborador(
             detail="Colaborador já está inativo",
         )
 
-    # Total delete
+    # total delete
     # db.delete(colaborador)
     # db.commit()
 
-    # Soft delete
+    # soft delete
     colaborador.ativo = False
     db.commit()
     db.refresh(colaborador)
@@ -282,7 +279,7 @@ def get_subordinados(
     - **matricula**: Matrícula do gestor
     - **incluir_inativos**: Se True, inclui colaboradores inativos (padrão: False)
     """
-    # Verificar se o gestor existe
+    # verificar se o gestor existe
     gestor = db.query(Colaborador).filter(Colaborador.matricula == matricula).first()
 
     if not gestor:
@@ -290,7 +287,7 @@ def get_subordinados(
             status_code=status.HTTP_404_NOT_FOUND, detail="Gestor não encontrado"
         )
 
-    # Buscar subordinados
+    # buscar subordinados
     query = db.query(Colaborador).filter(Colaborador.gestor_matricula == matricula)
 
     if not incluir_inativos:
