@@ -288,20 +288,4 @@ Seguimos o padrao Conventional Commits:
 - refactor: - Refatoracao de codigo
 - style: - Formatacao de codigo
 
----
-
-## Licenca
-
-Este projeto e propriedade do Itau Unibanco.
-
----
-
-## Equipe
-
-Desenvolvido pela equipe de TI do Itau Unibanco.
-
----
-
-## Suporte
-
-Para duvidas ou problemas, entre em contato com a equipe de desenvolvimento.
+`Desenvolvido por Caio André 😼`
