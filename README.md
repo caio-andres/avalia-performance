@@ -68,9 +68,11 @@ Edite o .env com suas configuracoes:
 
 # Database
 
+```
 DATABASE_URL=sqlite:///./test.db # Para desenvolvimento
 
-# DATABASE_URL=postgresql://user:password@localhost/dbname # Para producao
+DATABASE_URL=postgresql://user:password@localhost/dbname # Para producao
+```
 
 # JWT
 
