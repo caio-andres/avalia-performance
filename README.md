@@ -22,6 +22,7 @@ Sistema backend de avaliacao de desempenho de colaboradores desenvolvido com Fas
 - FastAPI - Framework web moderno e rapido
 - SQLAlchemy - ORM para banco de dados
 - PostgreSQL - Banco de dados relacional
+- AWS - RDS (em PostgreSQL)
 - Pydantic - Validacao de dados
 - JWT - Autenticacao segura
 - Pytest - Framework de testes
@@ -33,6 +34,7 @@ Sistema backend de avaliacao de desempenho de colaboradores desenvolvido com Fas
 
 - Python 3.12+
 - PostgreSQL 13+ (ou SQLite para desenvolvimento)
+    - Conta AWS (para utilizar RDS)
 - Git
 
 ---
@@ -41,28 +43,38 @@ Sistema backend de avaliacao de desempenho de colaboradores desenvolvido com Fas
 
 ### 1. Clone o repositorio
 
-git clone https://github.com/seu-usuario/performance.git
-cd performance
+```
+git clone https://github.com/caio-andres/avalia-performance.git
+cd avalia-performance
+```
 
 ### 2. Crie e ative o ambiente virtual
 
 Windows:
+```bash
 python -m venv .venv
 .venv\\Scripts\\activate
+```
 
 Linux/Mac:
+```bash
 python3 -m venv .venv
 source .venv/bin/activate
+```
 
 ### 3. Instale as dependencias
 
+```bash
 pip install -r requirements.txt
+```
 
 ### 4. Configure as variaveis de ambiente
 
 Copie o arquivo .env.example para .env:
 
+```bash
 cp .env.example .env
+```
 
 Edite o .env com suas configuracoes:
 
@@ -76,19 +88,25 @@ DATABASE_URL=postgresql://user:password@localhost/dbname # Para producao
 
 # JWT
 
+```
 SECRET_KEY=your-secret-key-here
 ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=30
+```
 
 # Application
 
+```
 APP_NAME=Avalia Performance
 VERSION=1.0.0
 DEBUG=True
+```
 
 ### 5. Inicialize o banco de dados
 
+```bash
 python app/db/init_db.py
+```
 
 Isso criara as tabelas e dados iniciais:
 
@@ -102,7 +120,9 @@ Isso criara as tabelas e dados iniciais:
 
 ### Modo Desenvolvimento
 
+```bash
 uvicorn app.main:app --reload
+```
 
 A API estara disponivel em: http://localhost:8000
 
@@ -118,10 +138,16 @@ A API estara disponivel em: http://localhost:8000
 ### Executar todos os testes
 
 Windows:
+
+```bash
 .\\run_tests.bat
+```
 
 Linux/Mac:
+
+```bash
 ./run_tests.sh
+```
 
 ### Executar testes especificos
 
@@ -133,7 +159,9 @@ pytest tests/test_metas.py -v
 
 ### Ver relatorio de cobertura
 
+```bash
 pytest --cov=app --cov-report=html
+```
 
 Abra htmlcov/index.html no navegador.
 
@@ -143,14 +171,14 @@ Abra htmlcov/index.html no navegador.
 
 Consulte a documentacao completa em:
 
-- docs/API.md - Documentacao detalhada de todos os endpoints
-- docs/collections/postman_collections.md - Collection para testes
+- backend/docs/API.md - Documentacao detalhada de todos os endpoints
+- backend/docs/collections/postman_collections.md - Collection para testes
 
 ---
 
 ## Estrutura do Projeto
 ```
-performance/
+backend/
 ├── app/
 │ ├── core/ # Configuracoes e seguranca
 │ │ ├── config.py # Configuracoes da aplicacao
