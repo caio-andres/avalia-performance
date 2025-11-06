@@ -1,5 +1,5 @@
 echo "========================================="
-echo "Executando Testes Unitarios"
+echo "Executando Testes Unitarios - Performance"
 echo "========================================="
 echo ""
 

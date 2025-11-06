@@ -1,6 +1,6 @@
 @echo off
 echo =========================================
-echo Executando Testes Unitarios - Itau
+echo Executando Testes Unitarios - Performance
 echo =========================================
 echo.
 
