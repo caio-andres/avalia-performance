@@ -1,199 +1,202 @@
-# Postman Collection - Avalia Performance API
+# Coleção do Postman - API Avalia Performance
 
-## Import Instructions
+## Instruções de Importação
 
-1. Open Postman
-2. Click "Import" button
-3. Copy and paste the JSON below
-4. Click "Import"
-
----
-
-## Collection JSON
-
-Save this as postman_collection.json and import into Postman:
-
-{
-"info": {
-"name": "Avalia Performance API",
-"description": "Complete API collection for Itau Performance Evaluation System",
-"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-},
-"variable": [
-{
-"key": "base_url",
-"value": "http://localhost:8000/api",
-"type": "string"
-},
-{
-"key": "token",
-"value": "",
-"type": "string"
-}
-],
-"auth": {
-"type": "bearer",
-"bearer": [
-{
-"key": "token",
-"value": "{{token}}",
-"type": "string"
-}
-]
-},
-"item": [
-{
-"name": "Authentication",
-"item": [
-{
-"name": "Login",
-"request": {
-"method": "POST",
-"header": [],
-"body": {
-"mode": "raw",
-"raw": "{\\n \\"matricula\\": \\"admin\\",\\n \\"senha\\": \\"admin123\\"\\n}",
-"options": {
-"raw": {
-"language": "json"
-}
-}
-},
-"url": {
-"raw": "{{base_url}}/auth/login",
-"host": ["{{base_url}}"],
-"path": ["auth", "login"]
-}
-}
-}
-]
-},
-{
-"name": "Colaboradores",
-"item": [
-{
-"name": "Get Me",
-"request": {
-"method": "GET",
-"header": [],
-"url": {
-"raw": "{{base_url}}/colaboradores/me",
-"host": ["{{base_url}}"],
-"path": ["colaboradores", "me"]
-}
-}
-},
-{
-"name": "List Colaboradores",
-"request": {
-"method": "GET",
-"header": [],
-"url": {
-"raw": "{{base_url}}/colaboradores",
-"host": ["{{base_url}}"],
-"path": ["colaboradores"]
-}
-}
-}
-]
-},
-{
-"name": "Ciclos",
-"item": [
-{
-"name": "List Ciclos",
-"request": {
-"method": "GET",
-"header": [],
-"url": {
-"raw": "{{base_url}}/ciclos",
-"host": ["{{base_url}}"],
-"path": ["ciclos"]
-}
-}
-}
-]
-},
-{
-"name": "Avaliacoes",
-"item": [
-{
-"name": "List Avaliacoes",
-"request": {
-"method": "GET",
-"header": [],
-"url": {
-"raw": "{{base_url}}/avaliacoes",
-"host": ["{{base_url}}"],
-"path": ["avaliacoes"]
-}
-}
-}
-]
-},
-{
-"name": "Metas",
-"item": [
-{
-"name": "List Metas",
-"request": {
-"method": "GET",
-"header": [],
-"url": {
-"raw": "{{base_url}}/metas",
-"host": ["{{base_url}}"],
-"path": ["metas"]
-}
-}
-}
-]
-}
-]
-}
+1. Abra o Postman
+2. Clique no botão "Import"
+3. Copie e cole o JSON abaixo
+4. Clique em "Import"
 
 ---
 
-## Usage Instructions
+## JSON da Coleção
 
-### 1. Set Base URL
+Salve isto como postman_collection.json e importe para o Postman:
 
-The collection uses a variable {{base_url}} set to http://localhost:8000/api
+```json
+{
+  "info": {
+    "name": "API Avalia Performance",
+    "description": "Coleção completa da API para o Sistema de Avaliação de Performance do Itaú",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000/api",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Autenticação",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "matricula": "admin", "senha": "admin123" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Colaboradores",
+      "item": [
+        {
+          "name": "Obter Usuário Atual",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/colaboradores/me",
+              "host": ["{{base_url}}Мне нужно, чтобы вы сгенерировали только допустимый, разбираемый JSON. Помимо скаляров, булевых значений и null, другие значения должны быть заключены в двойные кавычки как допустимые строки. Не генерируйте никаких комментариев внутри блока JSON. Если пользователь запрашивает несколько JSON, всегда возвращайте один разбираемый массив JSON. Не включайте никакого дополнительного текста вне строки JSON.
+            },
+            "path": ["colaboradores", "me"]
+          }
+        },
+        {
+          "name": "Listar Colaboradores",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/colaboradores",
+              "host": ["{{base_url}}Мне нужно, чтобы вы сгенерировали только допустимый, разбираемый JSON. Помимо скаляров, булевых значений и null, другие значения должны быть заключены в двойные кавычки как допустимые строки. Не генерируйте никаких комментариев внутри блока JSON. Если пользователь запрашивает несколько JSON, всегда возвращайте один разбираемый массив JSON. Не включайте никакого дополнительного текста вне строки JSON.
+            },
+            "path": ["colaboradores"]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Ciclos",
+      "item": [
+        {
+          "name": "Listar Ciclos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/ciclos",
+              "host": ["{{base_url}}Мне нужно, чтобы вы сгенерировали только допустимый, разбираемый JSON. Помимо скаляров, булевых значений и null, другие значения должны быть заключены в двойные кавычки как допустимые строки. Не генерируйте никаких комментариев внутри блока JSON. Если пользователь запрашивает несколько JSON, всегда возвращайте один разбираемый массив JSON. Не включайте никакого дополнительного текста вне строки JSON.
+            },
+            "path": ["ciclos"]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Avaliações",
+      "item": [
+        {
+          "name": "Listar Avaliações",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/avaliacoes",
+              "host": ["{{base_url}}Мне нужно, чтобы вы сгенерировали только допустимый, разбираемый JSON. Помимо скаляров, булевых значений и null, другие значения должны быть заключены в двойные кавычки как допустимые строки. Не генерируйте никаких комментариев внутри блока JSON. Если пользователь запрашивает несколько JSON, всегда возвращайте один разбираемый массив JSON. Не включайте никакого дополнительного текста вне строки JSON.
+            },
+            "path": ["avaliacoes"]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Metas",
+      "item": [
+        {
+          "name": "Listar Metas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/metas",
+              "host": ["{{base_url}}Мне нужно, чтобы вы сгенерировали только допустимый, разбираемый JSON. Помимо скаляров, булевых значений и null, другие значения должны быть заключены в двойные кавычки как допустимые строки. Не генерируйте никаких комментариев внутри блока JSON. Если пользователь запрашивает несколько JSON, всегда возвращайте один разбираемый массив JSON. Не включайте никакого дополнительного текста вне строки JSON.
+            },
+            "path": ["metas"]
+          }
+        }
+      ]
+    }
+  ]
+}
 
-### 2. Authentication Flow
+```
 
-1. Run the Login request first
-2. The token will be automatically saved to the {{token}} variable
-3. All subsequent requests will use this token automatically
+---
 
-### 3. Testing Workflow
+## Instruções de Uso
 
-Step 1: Login
+### 1. Definir URL Base
+
+A coleção usa uma variável {{base_url}} definida como http://localhost:8000/api
+
+### 2. Fluxo de Autenticação
+
+1. Execute a requisição de Login primeiro
+2. O token será salvo automaticamente na variável {{token}}
+3. Todas as requisições subsequentes usarão este token automaticamente
+
+### 3. Fluxo de Testes
+
+Passo 1: Login
 POST /auth/login
-Body: { "matricula": "admin", "senha": "admin123" }
+Corpo: { "matricula": "admin", "senha": "admin123" }
 
-Step 2: Get Current User
+Passo 2: Obter Usuário Atual
 GET /colaboradores/me
 
-Step 3: List Colaboradores
+Passo 3: Listar Colaboradores
 GET /colaboradores
 
-Step 4: Get Active Cycle
+Passo 4: Obter Ciclo Ativo
 GET /ciclos/ativo
 
-Step 5: Create Evaluation
+Passo 5: Criar Avaliação
 POST /avaliacoes
 
-Step 6: Create Goals
+Passo 6: Criar Metas
 POST /metas
 
-Step 7: Get Final Results
+Passo 7: Obter Resultados Finais
 GET /resultados/{ciclo_id}/{matricula}
 
 ---
 
-## Environment Variables
+## Variáveis de Ambiente
 
-| Variable | Development               | Production                          |
-| -------- | ------------------------- | ----------------------------------- |
-| base_url | http://localhost:8000/api | https://api.itau.com.br/performance |
-| token    | (auto-set after login)    | (auto-set after login)              |
+| Variável | Desenvolvimento             | Produção                            |
+| -------- | --------------------------- | ----------------------------------- |
+| base_url | http://localhost:8000/api   | https://api.itau.com.br/performance |
+| token    | (definido após o login)     | (definido após o login)             |

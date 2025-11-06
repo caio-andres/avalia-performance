@@ -1,32 +1,32 @@
-# API Documentation - Avalia Performance
+# Documentação da API - Avalia Performance
 
-## Base URL
+## URL Base
 
 http://localhost:8000/api
 
-## Authentication
+## Autenticação
 
-All endpoints (except /auth/login and /auth/token) require JWT authentication.
+Todos os endpoints (exceto /auth/login e /auth/token) requerem autenticação JWT.
 
-### Headers
+### Cabeçalhos
 
 Authorization: Bearer <token>
 
 ---
 
-## Authentication Endpoints
+## Endpoints de Autenticação
 
 ### POST /auth/login
 
-Login with credentials and receive JWT token.
+Login com credenciais e recebimento de token JWT.
 
-**Request Body:**
+**Corpo da Requisição:**
 {
 "matricula": "admin",
 "senha": "admin123"
 }
 
-**Response (200 OK):**
+**Resposta (200 OK):**
 {
 "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
 "token_type": "bearer",
@@ -39,22 +39,22 @@ Login with credentials and receive JWT token.
 }
 }
 
-**Error Responses:**
+**Respostas de Erro:**
 
-- 401 Unauthorized - Invalid credentials
-- 403 Forbidden - Inactive user
+- 401 Unauthorized - Credenciais inválidas
+- 403 Forbidden - Usuário inativo
 
 ---
 
 ### POST /auth/token
 
-OAuth2 compatible token endpoint.
+Endpoint de token compatível com OAuth2.
 
-**Request Body (form-data):**
+**Corpo da Requisição (form-data):**
 username: admin
 password: admin123
 
-**Response (200 OK):**
+**Resposta (200 OK):**
 {
 "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
 "token_type": "bearer"
@@ -62,162 +62,162 @@ password: admin123
 
 ---
 
-## Colaboradores Endpoints
+## Endpoints de Colaboradores
 
 ### GET /colaboradores/me
 
-Get current authenticated user information.
+Obter informações do usuário autenticado atual.
 
 ### GET /colaboradores
 
-List all employees (paginated).
+Listar todos os colaboradores (paginado).
 
-**Query Parameters:**
+**Parâmetros de Query:**
 
-- skip (int, default: 0) - Number of records to skip
-- limit (int, default: 100) - Maximum number of records to return
+- skip (int, default: 0) - Número de registros a pular
+- limit (int, default: 100) - Número máximo de registros a retornar
 
 ### GET /colaboradores/{matricula}
 
-Get employee by registration number.
+Obter colaborador pelo número de matrícula.
 
 ### POST /colaboradores
 
-Create new employee (Admin only).
+Criar novo colaborador (Somente Admin).
 
 ### PUT /colaboradores/{matricula}
 
-Update employee information (Admin only).
+Atualizar informações do colaborador (Somente Admin).
 
 ### DELETE /colaboradores/{matricula}
 
-Soft delete employee (Admin only).
+Excluir (soft delete) colaborador (Somente Admin).
 
 ### GET /colaboradores/{matricula}/subordinados
 
-Get employee's subordinates.
+Obter subordinados do colaborador.
 
 ### GET /colaboradores/{matricula}/gestor
 
-Get employee's manager.
+Obter gestor do colaborador.
 
 ---
 
-## Ciclos Endpoints
+## Endpoints de Ciclos
 
 ### GET /ciclos
 
-List all evaluation cycles.
+Listar todos os ciclos de avaliação.
 
 ### GET /ciclos/ativo
 
-Get current active cycle.
+Obter ciclo ativo atual.
 
 ### GET /ciclos/{ciclo_id}
 
-Get cycle by ID.
+Obter ciclo por ID.
 
 ### POST /ciclos
 
-Create new evaluation cycle (Admin only).
+Criar novo ciclo de avaliação (Somente Admin).
 
 ### PUT /ciclos/{ciclo_id}
 
-Update cycle (Admin only).
+Atualizar ciclo (Somente Admin).
 
 ### DELETE /ciclos/{ciclo_id}
 
-Delete cycle (Admin only).
+Excluir ciclo (Somente Admin).
 
 ---
 
-## Avaliacoes Endpoints
+## Endpoints de Avaliações
 
 ### GET /avaliacoes
 
-List all behavioral evaluations.
+Listar todas as avaliações de comportamento.
 
 ### GET /avaliacoes/minhas
 
-Get evaluations for current user.
+Obter avaliações para o usuário atual.
 
 ### GET /avaliacoes/pendentes
 
-Get pending evaluations for current user (as evaluator).
+Obter avaliações pendentes para o usuário atual (como avaliador).
 
 ### GET /avaliacoes/{avaliacao_id}
 
-Get evaluation by ID.
+Obter avaliação por ID.
 
 ### POST /avaliacoes
 
-Create new evaluation (Manager/Admin only).
+Criar nova avaliação (Somente Gestor/Admin).
 
 ### PUT /avaliacoes/{avaliacao_id}
 
-Update evaluation.
+Atualizar avaliação.
 
 ### POST /avaliacoes/{avaliacao_id}/concluir
 
-Mark evaluation as completed.
+Marcar avaliação como concluída.
 
 ### DELETE /avaliacoes/{avaliacao_id}
 
-Delete evaluation (Admin only).
+Excluir avaliação (Somente Admin).
 
 ---
 
-## Metas Endpoints
+## Endpoints de Metas
 
 ### GET /metas
 
-List all goals.
+Listar todas as metas.
 
 ### GET /metas/minhas
 
-Get goals for current user.
+Obter metas para o usuário atual.
 
 ### GET /metas/{meta_id}
 
-Get goal by ID.
+Obter meta por ID.
 
 ### POST /metas
 
-Create new goal (Manager/Admin only).
+Criar nova meta (Somente Gestor/Admin).
 
 ### PUT /metas/{meta_id}
 
-Update goal.
+Atualizar meta.
 
 ### DELETE /metas/{meta_id}
 
-Delete goal (Admin only).
+Excluir meta (Somente Admin).
 
 ---
 
-## Resultados Endpoints
+## Endpoints de Resultados
 
 ### GET /resultados/{ciclo_id}/{matricula}
 
-Get final evaluation results for employee in cycle.
+Obter resultados finais da avaliação para o colaborador no ciclo.
 
 ---
 
-## Status Codes
+## Códigos de Status
 
-- 200 OK - Request successful
-- 201 Created - Resource created successfully
-- 400 Bad Request - Invalid request data
-- 401 Unauthorized - Authentication required
-- 403 Forbidden - Insufficient permissions
-- 404 Not Found - Resource not found
-- 422 Unprocessable Entity - Validation error
-- 500 Internal Server Error - Server error
+- 200 OK - Requisição bem-sucedida
+- 201 Created - Recurso criado com sucesso
+- 400 Bad Request - Dados da requisição inválidos
+- 401 Unauthorized - Autenticação necessária
+- 403 Forbidden - Permissões insuficientes
+- 404 Not Found - Recurso não encontrado
+- 422 Unprocessable Entity - Erro de validação
+- 500 Internal Server Error - Erro interno do servidor
 
 ---
 
-## User Roles
+## Papéis de Usuário
 
-- ADMIN - Full access to all endpoints
-- GESTOR - Can manage subordinates and evaluations
-- COLABORADOR - Can view own data and evaluations
+- ADMIN - Acesso total a todos os endpoints
+- GESTOR - Pode gerenciar subordinados e avaliações
+- COLABORADOR - Pode visualizar seus próprios dados e avaliações

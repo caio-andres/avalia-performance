@@ -1,6 +1,6 @@
 ```mermaid
 graph TB
-subgraph "Frontend - Next.js"
+subgraph "Frontend"
 A[Login Page] --> B{Tipo Usuário}
 B -->|Colaborador| C[Dashboard Colaborador]
 B -->|Admin/Gestor| D[Dashboard Admin]
