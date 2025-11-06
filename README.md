@@ -112,7 +112,7 @@ AWS_SECRET_ACCESS_KEY=""
 LOG_LEVEL=INFO
 ```
 
-**Importante:** Para `SECRET_KEY`, gere uma string longa e aleatoria. Voce pode usar `openssl rand -hex 32` no Linux/macOS ou um gerador online (https://www.jwt.io/).
+**Importante:** Para `SECRET_KEY`, gere uma string longa e aleatoria. Voce pode usar `python -c "import secrets; print(secrets.token_hex(32))"` ou `openssl rand -hex 32` no Linux/macOS ou um gerador online (https://www.jwt.io/).
 
 ### 5. Inicialize o banco de dados
 
@@ -146,6 +146,9 @@ A API estara disponivel em: [http://localhost:8000](http://localhost:8000)
 - **ReDoc**: [http://localhost:8000/redoc](http://localhost:8000/redoc)
 
 ## Testes
+
+### Cobertura total de 80.75%:
+![alt text](image.png)
 
 ### Executar todos os testes
 
