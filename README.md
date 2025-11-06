@@ -2,8 +2,6 @@
 
 Sistema backend de avaliacao de desempenho de colaboradores desenvolvido com FastAPI, SLQAlchemy e RDS (PostgreSQL).
 
----
-
 ## Funcionalidades
 
 - Autenticacao JWT - Login seguro com tokens
@@ -14,8 +12,6 @@ Sistema backend de avaliacao de desempenho de colaboradores desenvolvido com Fas
 - Resultados - Calculo automatico de nota final (comportamental + metas)
 - Logging Estruturado - Rastreamento de todas as operacoes
 - Testes Automatizados - Cobertura de 77%+ com pytest
-
----
 
 ## Tecnologias
 
@@ -28,8 +24,6 @@ Sistema backend de avaliacao de desempenho de colaboradores desenvolvido com Fas
 - Pytest - Framework de testes
 - Uvicorn - Servidor ASGI
 
----
-
 ## Pre-requisitos
 
 Para rodar este projeto, voce precisara ter instalado:
@@ -38,8 +32,6 @@ Para rodar este projeto, voce precisara ter instalado:
 - **PostgreSQL 13+**: Para o banco de dados de producao. Para desenvolvimento, SQLite pode ser usado (configurado no `.env.example`).
 - **Git**: Para clonar o repositorio.
 - **Conta AWS (opcional)**: Se for utilizar o AWS RDS para o banco de dados.
-
----
 
 ## Instalacao
 
@@ -120,7 +112,7 @@ AWS_SECRET_ACCESS_KEY=""
 LOG_LEVEL=INFO
 ```
 
-**Importante:** Para `SECRET_KEY`, gere uma string longa e aleatoria. Voce pode usar `openssl rand -hex 32` no Linux/macOS ou um gerador online.
+**Importante:** Para `SECRET_KEY`, gere uma string longa e aleatoria. Voce pode usar `openssl rand -hex 32` no Linux/macOS ou um gerador online (https://www.jwt.io/).
 
 ### 5. Inicialize o banco de dados
 
@@ -135,8 +127,6 @@ Usuarios padrao criados:
 - **Admin**: `matricula=admin`, `senha=admin123`
 - **Gestor**: `matricula=gestor1`, `senha=senha123`
 - **Colaborador**: `matricula=12345`, `senha=senha123`
-
----
 
 ## Executando a Aplicacao
 
@@ -154,8 +144,6 @@ A API estara disponivel em: [http://localhost:8000](http://localhost:8000)
 
 - **Swagger UI**: [http://localhost:8000/docs](http://localhost:8000/docs)
 - **ReDoc**: [http://localhost:8000/redoc](http://localhost:8000/redoc)
-
----
 
 ## Testes
 
@@ -195,8 +183,6 @@ pytest --cov=app --cov-report=html
 
 Abra o arquivo `htmlcov/index.html` no seu navegador para visualizar o relatorio.
 
----
-
 ## Documentação
 
 Para detalhes completos sobre os endpoints da API, modelos, arquitetura e autenticação, consulte:
@@ -206,8 +192,6 @@ Para detalhes completos sobre os endpoints da API, modelos, arquitetura e autent
 - [Solução de Problemas](docs/TROUBLESHOOTING.md)
 - [Coleções Postman](docs/collections/postman_collections.md)
 
----
-
 ## Usuarios Padrao (para ambiente de desenvolvimento)
 
 | Matricula | Senha    | Papel       | Descricao                   |
@@ -215,8 +199,6 @@ Para detalhes completos sobre os endpoints da API, modelos, arquitetura e autent
 | admin     | admin123 | ADMIN       | Acesso total ao sistema     |
 | gestor1   | senha123 | GESTOR      | Pode gerenciar subordinados |
 | 12345     | senha123 | COLABORADOR | Acesso basico               |
-
----
 
 ## Endpoints Principais da API
 
@@ -270,8 +252,6 @@ Para detalhes completos sobre os endpoints da API, modelos, arquitetura e autent
 - `PUT /api/metas/{meta_id}` - Atualiza uma meta existente.
 - `DELETE /api/metas/{meta_id}` - Deleta uma meta.
 
----
-
 ## Seguranca
 
 O projeto implementa as seguintes medidas de seguranca:
@@ -281,8 +261,6 @@ O projeto implementa as seguintes medidas de seguranca:
 - **Role-Based Access Control (RBAC)**: O acesso a diferentes endpoints e funcionalidades e controlado com base no papel do usuario (Admin, Gestor, Colaborador).
 - **SQL Injection Protection**: O uso do ORM SQLAlchemy ajuda a prevenir ataques de injecao SQL.
 - **CORS Configuration**: O CORS esta configurado para permitir apenas origens especificas, prevenindo ataques de cross-site scripting.
-
----
 
 ## Conventional Commits
 
