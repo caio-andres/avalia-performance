@@ -14,7 +14,7 @@ def init_db():
     - Cria usuário admin padrão
     - Cria ciclo de exemplo
     """
-    print("🔄 Dropando todas as tabelas existentes...")
+    print("Dropando todas as tabelas existentes...")
 
     # Dropar schema public com CASCADE para remover todas as dependências
     try:
@@ -25,16 +25,16 @@ def init_db():
             conn.execute(text("GRANT ALL ON SCHEMA public TO usuario"))
             conn.execute(text("GRANT ALL ON SCHEMA public TO public"))
             conn.commit()
-        print("✅ Tabelas antigas removidas!")
+        print("Tabelas antigas removidas!")
     except Exception as e:
         print(f"⚠️  Aviso ao dropar schema: {e}")
 
-    print("🔄 Criando tabelas no banco de dados...")
+    print("Criando tabelas no banco de dados...")
 
     # Criar todas as tabelas
     Base.metadata.create_all(bind=engine)
 
-    print("✅ Tabelas criadas com sucesso!")
+    print("Tabelas criadas com sucesso!")
 
     # Criar sessão
     db = SessionLocal()
@@ -44,7 +44,7 @@ def init_db():
         admin = db.query(Colaborador).filter(Colaborador.matricula == "admin").first()
 
         if not admin:
-            print("🔄 Criando usuário administrador...")
+            print("Criando usuário administrador...")
 
             # Criar usuário admin
             admin = Colaborador(
@@ -61,14 +61,14 @@ def init_db():
             db.commit()
             db.refresh(admin)
 
-            print("✅ Usuário admin criado!")
-            print("   Matrícula: admin")
-            print("   Senha: admin123")
+            print("Usuário admin criado!")
+            print("Matrícula: admin")
+            print("Senha: admin123")
         else:
-            print("ℹ️  Usuário admin já existe")
+            print("Usuário admin já existe")
 
         # Criar colaboradores de exemplo
-        print("🔄 Criando colaboradores de exemplo...")
+        print("Criando colaboradores de exemplo...")
 
         colaboradores_exemplo = [
             {
@@ -121,10 +121,10 @@ def init_db():
                 db.add(colaborador)
 
         db.commit()
-        print("✅ Colaboradores de exemplo criados!")
+        print("Colaboradores de exemplo criados!")
 
         # Criar ciclo de exemplo
-        print("🔄 Criando ciclo de avaliação de exemplo...")
+        print("Criando ciclo de avaliação de exemplo...")
 
         ciclo_atual = db.query(Ciclo).filter(Ciclo.ano == 2025).first()
 
@@ -141,26 +141,26 @@ def init_db():
             db.commit()
             db.refresh(ciclo)
 
-            print("✅ Ciclo 2025 criado!")
+            print("Ciclo 2025 criado!")
         else:
-            print("ℹ️  Ciclo 2025 já existe")
+            print("Ciclo 2025 já existe")
 
         print("\n" + "=" * 50)
-        print("✅ Banco de dados inicializado com sucesso!")
+        print("Banco de dados inicializado com sucesso!")
         print("=" * 50)
-        print("\n📋 Credenciais de acesso:")
+        print("\nCredenciais de acesso:")
         print("   Matrícula: admin")
         print("   Senha: admin123")
-        print("\n📋 Colaboradores de exemplo:")
+        print("\nColaboradores de exemplo:")
         print("   Matrícula: 12345 | Senha: senha123")
         print("   Matrícula: 67890 | Senha: senha123")
         print("   Matrícula: 11111 | Senha: senha123")
-        print("\n🚀 Inicie o servidor com: uvicorn app.main:app --reload")
-        print("📖 Documentação: http://127.0.0.1:8000/docs")
+        print("\nInicie o servidor com: uvicorn app.main:app --reload")
+        print("Documentação: http://127.0.0.1:8000/docs")
         print("=" * 50 + "\n")
 
     except Exception as e:
-        print(f"❌ Erro ao inicializar banco de dados: {e}")
+        print(f"erro ao inicializar banco de dados: {e}")
         db.rollback()
         raise
     finally:
