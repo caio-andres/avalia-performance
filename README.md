@@ -206,7 +206,6 @@ Para detalhes completos sobre os endpoints da API, modelos, arquitetura e autent
 - [Solução de Problemas](docs/TROUBLESHOOTING.md)
 - [Coleções Postman](docs/collections/postman_collections.md)
 
-
 ---
 
 ## Usuarios Padrao (para ambiente de desenvolvimento)
@@ -216,6 +215,7 @@ Para detalhes completos sobre os endpoints da API, modelos, arquitetura e autent
 | admin     | admin123 | ADMIN       | Acesso total ao sistema     |
 | gestor1   | senha123 | GESTOR      | Pode gerenciar subordinados |
 | 12345     | senha123 | COLABORADOR | Acesso basico               |
+
 ---
 
 ## Endpoints Principais da API
