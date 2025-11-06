@@ -294,6 +294,4 @@ O projeto implementa as seguintes medidas de seguranca:
 - `refactor:` - Refatoracao de codigo, sem mudanca de funcionalidade
 - `style:` - Alteracoes de formatacao de codigo
 
----
-
 `Desenvolvido por Caio André 😼`
